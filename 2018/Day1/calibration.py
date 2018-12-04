@@ -1,11 +1,23 @@
 #!/usr/bin/python
 
-inputfile = 'input.txt'
 
-f = open(inputfile)
-sum = 0
-for line in f:
-    if line[0] == '+': sum +=int(line[1:])
-    else: sum -= int(line[1:])
+def lineValue(line):
+    # Returns the value of the line as an int
+    return int(line[1:])
 
-print(sum)
+def sumOrSub(line):
+    # Returns the first char in the line as +1 or -1
+    if line[0] == '+':
+        return 1
+    else:
+        return -1
+
+def getTheTotal():
+    # Returns the sum of the input
+    f = open('input.txt')
+    sum = 0
+    for line in f:
+        sum += sumOrSub(line) * lineValue(line)
+    return sum
+
+print(getTheTotal())
