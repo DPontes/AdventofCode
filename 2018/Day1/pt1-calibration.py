@@ -23,4 +23,5 @@ def getTheTotal():
     return sum
 
 
-print(getTheTotal())
+if __name__ == '__main__':
+    print(getTheTotal())
