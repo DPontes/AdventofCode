@@ -24,4 +24,4 @@ Of these box IDs, four of them contain a letter which appears exactly twice, and
 
 What is the checksum for your list of box IDs?
 
-### Answer: 
+### Answer: 6972 

@@ -4,8 +4,8 @@ from collections import Counter
 
 def getLineOccurences(line):
     total = Counter(list(Counter(line).values()))
-    two = 0 if total.get(2) == None else total.get(2)
-    three = 0 if total.get(3) == None else total.get(3)
+    two = 0 if total.get(2) == None else 1
+    three = 0 if total.get(3) == None else 1
     return two, three
 
 def getCheckSum():
