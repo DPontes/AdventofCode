@@ -57,4 +57,4 @@ Here are other examples:
 
 What is the first frequency your device reaches twice?
 
-### Answer: 
+### Answer: 241 (it takes a bit of time, seems like a good exercise to do algo optimization) 
