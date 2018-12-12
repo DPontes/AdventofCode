@@ -3,13 +3,14 @@
 
 def getCommonChars(str1, str2):
     # Returns a string of unique chars of the input strings
-    uniqueList= []
-    for elem1, elem2 in zip(str1,str2):
+    uniqueList = []
+    for elem1, elem2 in zip(str1, str2):
         if elem1 == elem2:
             uniqueList.append(elem1)
     if len(uniqueList) == (len(str1) - 1):
         return ''.join(uniqueList)
-    else: return 0
+    else:
+        return 0
 
 
 def loopThrough():
@@ -22,7 +23,6 @@ def loopThrough():
                 return uniqueString
 
     return "No result"
-     
 
 
 if __name__ == '__main__':
