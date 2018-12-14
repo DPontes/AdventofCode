@@ -1,24 +1,27 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+import numpy as np
 
 
 def extractCoordinates(line):
-    coord = line.split(' ')[2].split(',')
-    coord[1] = coord[1][:-1]  # Removes the ':' at the end
-    return coord
+    x, y = line.split(' ')[2].split(',')
+    y = y[:-1]  # Removes the ':' at the end
+    return int(x), int(y)
 
 
 def extractDimensions(line):
-    return line.split(' ')[3].split('x')
+    width, length = line.split(' ')[3].split('x')
+    return int(width), int(length)
 
 
-def defineArea(coords, dimens, rectArea):
+def defineArea(x, y, width, length, rectArea):
     pass
 
 
 if __name__ == '__main__':
     f = open('example-input.txt').readlines()
-    rectArea = []
+    rectArea = np.zeros(64)
+    rectArea = rectArea.reshape((8,8))
+    print(rectArea)
     for line in f:
-        coords = extractCoordinates(line)
-        dimens = extractDimensions(line)
-        defineArea(coords, dimens, rectArea)
+        x, y = extractCoordinates(line)
+        width, length = extractDimensions(line)
