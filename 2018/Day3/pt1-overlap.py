@@ -15,16 +15,25 @@ def extractDimensions(line):
     return int(width), int(length)
 
 
-def defineArea(x, y, width, length, rectArea):
+def defineArea(x, y, width, length, availableArea, usedArea):
     for w in range(width):
         for l in range(length):
-            rectArea.append([[w+x,l+y],0])
+            if[x+w, y+l] not in availableArea:
+                availableArea.append([x+w, y+l])
+            else:
+                if [x+w, y+l] not in usedArea:
+                    usedArea.append([x+w, y+l])
+    return availableArea, usedArea
+
 
 if __name__ == '__main__':
-    f = open('example-input.txt').readlines()
-    rectArea = []
+    f = open('input.txt').readlines()
+    availableArea = []
+    usedArea = []
     for line in f:
+        print(line)
         x, y = extractCoordinates(line)
         width, length = extractDimensions(line)
-        defineArea(x, y, width, length, rectArea)
-    print(rectArea)
+        availableArea, usedArea = defineArea(x, y, width, length, availableArea,usedArea)
+    print(usedArea)
+    
