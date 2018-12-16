@@ -36,4 +36,4 @@ if __name__ == '__main__':
         width, length = extractDimensions(line)
         availableArea, usedArea = defineArea(x, y, width, length, availableArea,usedArea)
     print(usedArea)
-    
+    print(len(usedArea))    

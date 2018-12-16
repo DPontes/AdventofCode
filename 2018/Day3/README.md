@@ -48,4 +48,4 @@ The four square inches marked with X are claimed by both 1 and 2. (Claim 3, whil
 
 If the Elves all proceed with their own plans, none of them will have enough fabric. How many square inches of fabric are within two or more claims?
 
-### Answer: 
+### Answer: 104712 
