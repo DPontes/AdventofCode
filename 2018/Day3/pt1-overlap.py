@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 def extractCoordinates(line):
     x, y = line.split(' ')[2].split(',')
     y = y[:-1]  # Removes the ':' at the end
@@ -34,6 +35,6 @@ if __name__ == '__main__':
         print(line)
         x, y = extractCoordinates(line)
         width, length = extractDimensions(line)
-        availableArea, usedArea = defineArea(x, y, width, length, availableArea,usedArea)
+        availableArea, usedArea = defineArea(x, y, width, length, availableArea, usedArea)
     print(usedArea)
-    print(len(usedArea))    
+    print(len(usedArea))
