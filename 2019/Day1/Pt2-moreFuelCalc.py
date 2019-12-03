@@ -10,6 +10,7 @@ def calculateTotalFuel(inputFuel):
         return fuel
     return 0
 
+
 if __name__ == '__main__':
     f = open('input.txt')
     totalFuel = 0
