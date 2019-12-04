@@ -3,7 +3,7 @@ import math
 
 
 def calculateFuel(fuel):
-        return math.floor(int(fuel) / 3) - 2
+    return math.floor(int(fuel) / 3) - 2
 
 
 if __name__ == '__main__':

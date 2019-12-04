@@ -1,6 +1,7 @@
 import pytest
 from Pt1fuelCalc import *
 
+
 def test_calculateFuel():
     assert calculateFuel(12) == 2
     assert calculateFuel(14) == 2
