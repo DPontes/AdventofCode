@@ -1,3 +1,4 @@
 *.swp
 *.swo
 *.sw*
+*__pycache__*
