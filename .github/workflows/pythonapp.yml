@@ -7,6 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    paths:
+        - '2019/*'
+
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.7
@@ -25,5 +28,3 @@ jobs:
     - run: |
         pip install pytest
         pytest .
-    paths:
-        - '2019/*'
