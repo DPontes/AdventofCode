@@ -24,4 +24,4 @@ jobs:
     - name: Run pytest
       run: |
         pip install pytest
-        pytest '2019/*'
+        pytest
