@@ -13,7 +13,8 @@ def intCode(value_list):
     for element in range(0, len(value_list), 4):
 
         value_pos0 = int(value_list[int(element)])
-        if value_pos0 == 99: break
+        if value_pos0 == 99:
+            break
 
         value_pos1 = int(value_list[int(element) + 1])
         value_pos2 = int(value_list[int(element) + 2])
