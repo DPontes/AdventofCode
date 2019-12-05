@@ -1,5 +1,6 @@
 import pytest
 from Pt1_1202Alarm import *
+from Pt2_1202Alarm import *
 
 
 returned_set = ['1', '12', '2', '3', '1', '1', '2', '3', '1', '3', '4', '3',
@@ -18,6 +19,7 @@ returned_set = ['1', '12', '2', '3', '1', '1', '2', '3', '1', '3', '4', '3',
 """def test_readValues():
     assert readValues() == returned_set
 """
+
 
 def test_intCode():
     assert intCode(['1', '0', '0', '0', '99']) == ['2', '0', '0', '0', '99']
