@@ -6,33 +6,30 @@ def readValues():
     with open('input.txt', 'r') as csv_file:
         reader = csv.reader(csv_file)
         value_list = list(reader)
-    return value_list[0]
+    return list(map(int, value_list[0]))
 
 
 def intCode(value_list):
     for element in range(0, len(value_list), 4):
 
-        value_pos0 = int(value_list[int(element)])
+        value_pos0 = value_list[element]
         if value_pos0 == 99:
             break
 
-        value_pos1 = int(value_list[int(element) + 1])
-        value_pos2 = int(value_list[int(element) + 2])
-        value_pos3 = int(value_list[int(element) + 3])
+        value_pos1 = value_list[element + 1]
+        value_pos2 = value_list[element + 2]
+        value_pos3 = value_list[element + 3]
 
         if value_pos0 == 1:
-            result = int(value_list[value_pos1]) + int(value_list[value_pos2])
-            value_list[value_pos3] = str(result)
+            result = value_list[value_pos1] + value_list[value_pos2]
 
         elif value_pos0 == 2:
-            result = int(value_list[value_pos1]) * int(value_list[value_pos2])
-            value_list[value_pos3] = str(result)
+            result = value_list[value_pos1] * value_list[value_pos2]
 
-        else:
-            print('invalid value')
+        value_list[value_pos3] = result
 
     return value_list
 
 
 if __name__ == '__main__':
-    print(intCode(readValues()))
+    print('Result:', intCode(readValues())[0])
