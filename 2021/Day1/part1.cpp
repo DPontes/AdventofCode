@@ -1,4 +1,5 @@
 #include <iostream>
+#include <exception>
 #include <fstream>
 
 int isDeeper(int a, int b)
@@ -6,36 +7,38 @@ int isDeeper(int a, int b)
   return b > a;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-  std::string depth;
-  std::fstream input ("./input");
+  std::string sDepth;
   int previous = -1;
-  int counter = 0;
+  int totalDepthIncrements = 0;
 
-  if (input.is_open())
+  try
   {
-    while (getline(input, depth))
-    {
-      int depth_n = std::stoi(depth);
-      if(previous == -1)
+    std::ifstream input(argv[1], std::ios::in | std::ios::binary);
+    if(!input) throw std::ios::failure("Error opening file!");
+
+      int depth;
+      while (getline(input, sDepth))
       {
-        previous = depth_n;
+        depth = std::stoi(sDepth);
+        if(previous == -1)
+        {
+          previous = depth;
+        }
+        else
+        {
+          if(isDeeper(previous, depth)) totalDepthIncrements++;
+          previous = depth;
+        }
       }
-      else
-      {
-        if(isDeeper(previous, depth_n)) counter++;
-        previous = depth_n;
-      }
-    }
-    input.close();
+      std::cout << "Total: " << totalDepthIncrements << std::endl;
   }
-  else
+  catch (const std::exception &e)
   {
-    std::cout << "Unable to open file" << std::endl;
+    std::cerr << e.what() << std::endl;
   }
 
-  std::cout << "Total: " << counter << std::endl;
 
   return 0;
 }
