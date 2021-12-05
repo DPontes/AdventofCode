@@ -16,7 +16,15 @@ const int countTotalDepthIncrements(std::ifstream& input)
 
   while (getline(input, sDepth))
   {
-    depth = std::stoi(sDepth);
+    try
+    {
+        depth = std::stoi(sDepth);
+    }
+    catch (std::invalid_argument& e)
+    {
+        std::cout << "Input value is not a number.. Exiting" << std::endl;
+        throw;
+    }
 
     if(previous == -1) previous = depth;
     else
@@ -42,7 +50,6 @@ int main(int argc, char *argv[])
   {
     std::cerr << e.what() << std::endl;
   }
-
 
   return 0;
 }
