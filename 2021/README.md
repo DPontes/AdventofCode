@@ -49,3 +49,11 @@
   *Possible improvements*:
   - Generalize the `actionUp/Down/Forward()` functions into one
   - Use a tuple instead of a pair in order to be easier to expand the amount of items
+
+### Part 2
+
+- The pair used in Part 1 was transformed into a tuple in order to use the same application flow with minimal alterations. Adding the `aim` as a 3rd argument in the tuple allowed for keeping the coordinates and the name close together.
+  The functions `actionUp/Down/Forward` were changed to accomodate for the required changes, where:
+  - `actionUp` decreases the `aim`
+  - `actionDown` increases the `aim`
+  - `actionForward` increases the horizontal and changes the depth as a product of the `aim` x `size`
