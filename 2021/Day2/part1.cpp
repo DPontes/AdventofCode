@@ -3,22 +3,40 @@
 #include <exception>
 #include <fstream>
 
+void actionUp(std::pair<int, int> &p, const std::string &size)
+{
+  p.first -= std::stoi(size);
+}
+
+void actionDown(std::pair<int, int> &p, const std::string &size)
+{
+  p.first += std::stoi(size);
+}
+
+void actionForward(std::pair<int, int> &p, const std::string &size)
+{
+  p.second += std::stoi(size);
+}
+
 const int multiplyDepthHorizontal(std::ifstream& input)
 {
   std::string instr;
   std::string action;
   std::string size;
-  auto p = std::make_pair(0, 0);
+  std::pair coord = {0, 0};     // c++17 syntax
+
   while(getline(input, instr))
   {
     std::istringstream linestream(instr);
     linestream >> action >> size;
 
-    if( action == "up")      p.first -= std::stoi(size);
-    if( action == "down")    p.first += std::stoi(size);
-    if( action == "forward") p.second += std::stoi(size);
+    if( action == "up")      actionUp      (coord, size);
+    if( action == "down")    actionDown    (coord, size);
+    if( action == "forward") actionForward (coord, size);
   }
-  return p.first * p.second;
+
+  return coord.first * coord.second;
+
 }
 
 int main(int argc, char *argv[])
