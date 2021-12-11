@@ -57,3 +57,15 @@
   - `actionUp` decreases the `aim`
   - `actionDown` increases the `aim`
   - `actionForward` increases the horizontal and changes the depth as a product of the `aim` x `size`
+
+## Day 3
+
+### Part 1
+
+#### Note: I'm currently note really happy with how "hacky" this solution is, but it works
+
+- To see what is most common (0 or 1) for each column of the `input`, each line `binaryString` is parsed into `int`s of `[0, 1]`, where each of its elements' value is added to the existing value of `binaryVector`. With the total sum for each element, if said element is bigger than `nReads / 2` it means that `1` was more common at that element, otherwise it was `0`.
+
+  with this operation it is possible then to determine `gammaRate` and `epsilonRate` which are the decimal versions of the binary number obtained from the most common values for each element of `binaryVector`, and its "mirror" (e.g.: `100101` is the "mirror" of `011010`)
+
+
