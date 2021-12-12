@@ -29,6 +29,10 @@ void resizeVector(std::vector<int>& binaryVector, const std::string& binaryStrin
   binaryVector.resize(binaryString.size());
 }
 
+float getPower(const int& base, const float& exponent)
+{
+  return base * pow(2, exponent);
+}
 
 int getGammaEpsilonProduct(std::vector<int>& binaryVector, const size_t& nReads)
 {
@@ -41,12 +45,13 @@ int getGammaEpsilonProduct(std::vector<int>& binaryVector, const size_t& nReads)
   for(it = binaryVector.begin(); it != binaryVector.end(); it++)
   {
     auto vectorIndex = std::distance(binaryVector.begin(), it);
+    auto power = vectorSize - vectorIndex - 1;
 
     int gammaBinary = (binaryVector[vectorIndex] > nReads / 2) ? 1 : 0;
-    gammaRate += gammaBinary * pow(2, vectorSize - vectorIndex - 1);
+    gammaRate += getPower(gammaBinary, power);
 
     int epsilonBinary = (binaryVector[vectorIndex] > nReads / 2) ? 0 : 1;
-    epsilonRate += epsilonBinary * pow(2, vectorSize - vectorIndex - 1);
+    epsilonRate += getPower(epsilonBinary, power);
   }
 
   return gammaRate * epsilonRate;
@@ -57,7 +62,7 @@ int getPowerConsumption(std::ifstream& input)
 {
   std::string binaryString;
   size_t nReads = 0;
-  size_t powerConsumption = -99;
+  size_t powerConsumption;
   bool first = true;
   std::vector<int> binaryVector;
 

@@ -62,7 +62,7 @@
 
 ### Part 1
 
-#### Note: I'm currently note really happy with how "hacky" this solution is, but it works
+#### Note: I'm currently not really happy with how "hacky" this solution is, but it works
 
 - To see what is most common (0 or 1) for each column of the `input`, each line `binaryString` is parsed into `int`s of `[0, 1]`, where each of its elements' value is added to the existing value of `binaryVector`. With the total sum for each element, if said element is bigger than `nReads / 2` it means that `1` was more common at that element, otherwise it was `0`.
 
