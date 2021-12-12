@@ -68,4 +68,6 @@
 
   with this operation it is possible then to determine `gammaRate` and `epsilonRate` which are the decimal versions of the binary number obtained from the most common values for each element of `binaryVector`, and its "mirror" (e.g.: `100101` is the "mirror" of `011010`)
 
+### Part 2
 
+- (!) Incomplete - so far it only fills up a `nReads` x `binaryString.size()` matrix with `int`s [0, 1] corresponding to the input.
