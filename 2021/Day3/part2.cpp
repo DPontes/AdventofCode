@@ -1,18 +1,11 @@
-#include <math.h>
 #include <string>
 #include <vector>
-#include <sstream>
 #include <iostream>
 #include <exception>
 #include <fstream>
+#include "helpers.h"
 
 using matrix = std::vector<std::vector<int>>;
-
-
-int convertCharToInt(const char& c)
-{
-  return (int) c - 48;
-}
 
 
 std::vector<int> appendString2Vector(const std::string& binaryString)
@@ -123,45 +116,27 @@ std::vector<int> getReading(const matrix internalMatrix, const std::string rule,
   return rating;
 }
 
-
-float getPower(const int& base, const float& exponent)
+int getRating(matrix& matrix, const std::string& rule, const int& index)
 {
-  return base * pow(2, exponent);
+  auto reading  = getReading(matrix, rule, index);
+  reading.insert(reading.begin(), matrix[0][0]);
+  auto rating = binaryVector2Decimal(reading);
+
+  return rating;
 }
-
-
-int binaryVector2Decimal(const std::vector<int>& vector)
-{
-  float decimal;
-
-  for(auto it = 0; it != vector.size(); it++)
-  {
-    int power = vector.size() - it - 1;
-    decimal += getPower(vector[it], power);
-  }
-
-  return (int) decimal;
-}
-
 
 std::pair<int, int> getRatings(matrix& binaryMatrix)
 {
   auto [firstMostCommonMatrix, firstLessCommonMatrix] = splitMostLessCommonMatrix(binaryMatrix);
 
-  // this can be refactored into two calls of a function
-  auto o2reading  = getReading(firstMostCommonMatrix, "most", 1);
-  o2reading.insert(o2reading.begin(), firstMostCommonMatrix[0][0]);
-  auto o2rating = binaryVector2Decimal(o2reading);
-
-  auto co2reading = getReading(firstLessCommonMatrix, "less", 1);
-  co2reading.insert(co2reading.begin(), firstLessCommonMatrix[0][0]);
-  auto co2rating = binaryVector2Decimal(co2reading);
+  auto o2rating  = getRating(firstMostCommonMatrix, "most", 1);
+  auto co2rating = getRating(firstLessCommonMatrix, "less", 1);
 
   return std::make_pair(o2rating, co2rating);
 }
 
 
-int lifeSupportRating(std::ifstream& input)
+matrix readValuesIntoMatrix(std::ifstream& input)
 {
   std::string binaryString;
   matrix binaryMatrix;
@@ -171,6 +146,12 @@ int lifeSupportRating(std::ifstream& input)
     appendVectorToMatrix(binaryMatrix, binaryString);
   }
 
+  return binaryMatrix;
+}
+
+int lifeSupportRating(std::ifstream& input)
+{
+  matrix binaryMatrix = readValuesIntoMatrix( input );
   auto [o2Rating, co2Rating] = getRatings(binaryMatrix);
 
   return o2Rating * co2Rating;
@@ -184,7 +165,7 @@ int main(int argc, char *argv[])
     std::ifstream input(argv[1], std::ios::in | std::ios::binary);
     if(!input) throw std::ios::failure("Error opening file!");
 
-    auto result = lifeSupportRating( input);
+    auto result = lifeSupportRating( input );
 
     std::cout << "Life Support Rating: " << result << std::endl;
   }
