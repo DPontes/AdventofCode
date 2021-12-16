@@ -1,31 +1,22 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
+#include <vector>
 #include <math.h>
+#include <string>
+#include <vector>
 
-int convertCharToInt(const char& c)
-{
-  return (int) c - 48;
-}
+using matrix = std::vector<std::vector<int>>;
 
+int convertCharToInt(const char&);
 
-float getPower(const int& base, const float& exponent)
-{
-  return base * pow(2, exponent);
-}
+float getPower(const int&, const float&);
 
+int binaryVector2Decimal(const std::vector<int>&);
 
-int binaryVector2Decimal(const std::vector<int>& vector)
-{
-  float decimal;
+std::vector<int> appendString2Vector(const std::string&);
 
-  for(auto it = 0; it != vector.size(); it++)
-  {
-    int power = vector.size() - it - 1;
-    decimal += getPower(vector[it], power);
-  }
+void appendVectorToMatrix(matrix&, const std::string&);
 
-  return (int) decimal;
-}
 
 #endif
