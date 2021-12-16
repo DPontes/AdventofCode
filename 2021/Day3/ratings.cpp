@@ -85,15 +85,6 @@ int getRating(matrix& matrix, const std::string& rule, const int& index)
 }
 
 
-std::pair<int, int> getRatings(matrix& binaryMatrix)
-{
-  auto o2rating  = getRating(binaryMatrix, "most", 0);
-  auto co2rating = getRating(binaryMatrix, "less", 0);
-
-  return std::make_pair(o2rating, co2rating);
-}
-
-
 matrix readValuesIntoMatrix(std::ifstream& input)
 {
   std::string binaryString;
@@ -110,7 +101,9 @@ matrix readValuesIntoMatrix(std::ifstream& input)
 int lifeSupportRating(std::ifstream& input)
 {
   matrix binaryMatrix = readValuesIntoMatrix( input );
-  auto [o2Rating, co2Rating] = getRatings(binaryMatrix);
+
+  auto o2Rating  = getRating(binaryMatrix, "most", 0);
+  auto co2Rating = getRating(binaryMatrix, "less", 0);
 
   return o2Rating * co2Rating;
 }

@@ -70,4 +70,22 @@
 
 ### Part 2
 
-- (!) Incomplete - so far it only fills up a `nReads` x `binaryString.size()` matrix with `int`s [0, 1] corresponding to the input.
+- The main implementation is visible in the `ratings.cpp` file. A `helpers.cpp` file is also created that includes useful functions not directly related to the calculation of the O2 and CO2 ratings.
+
+  Initially the `readValuesIntoMatrix(std::ifstream&)` will just read the `ifstream` into a `binaryString` which will then be added into a matrix of size `N x M`, where:
+  - `N` is the number of columns in the matrix
+  - `M` is the number of lines in the matrix
+
+  in function `appendVectorToMatrix(std::vector<std::vector<int>>, std::string)`.
+
+  The Life Support Ratings of O2 and CO2 are obtained through the `getRating(matrix&, const std::string&, const int&)` function. This function takes in the original matrix with all the readings, as well as the `rule` which defines if the rating will be obtained for the O2 or CO2 by indicating if it will look for the `most` or the `less` (or least) common value of [0, 1] for each column of the `matrix`, respectively.
+
+  The rating is achieved by transforming into a decinal the binary vector (`binaryVector2Decimal(std::vectorzint>)`) obtained in the `getReading(const matrix&, const std::String&, int)` function.
+
+  The `getReading(...)` function is a recursive function, as in it calls itself during operation while a specific condition occurs. In this case, it will call itself while the `index` value is less or equal to `N`, i.e., the number of columns of the matrix.
+  
+  It starts by obtaining a `commonVector` vector which contains the most/least common values [0, 1] for each column, depending on the `rule`. It checks next if the number of lines of the `internalMatrix` passed by reference is 1. If that's the case, it will stop reading and return as `rating` the rest of the elements in the `[index:]` interval. On the other hand, if the number of lines is > 1, it will check which lines in the `internalMatrix` have the most common element in the `index` and add those to a temporary `newMatrix` matrix.
+
+  Finally, the process starts again, if the `index` is smaller than `N`, the number of columns in the matrix. If, however, it reached the end, it will return the final `rating`.
+
+  
