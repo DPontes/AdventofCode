@@ -1,4 +1,5 @@
 #include <string>
+#include <thread>
 #include <vector>
 #include <iostream>
 #include <exception>
@@ -118,7 +119,7 @@ std::vector<int> getReading(const matrix internalMatrix, const std::string rule,
 
 int getRating(matrix& matrix, const std::string& rule, const int& index)
 {
-  auto reading  = getReading(matrix, rule, index);
+  auto reading = getReading(matrix, rule, index);
   reading.insert(reading.begin(), matrix[0][0]);
   auto rating = binaryVector2Decimal(reading);
 
@@ -129,6 +130,19 @@ std::pair<int, int> getRatings(matrix& binaryMatrix)
 {
   auto [firstMostCommonMatrix, firstLessCommonMatrix] = splitMostLessCommonMatrix(binaryMatrix);
 
+  //int o2rating;
+  //int co2rating;
+
+  //std::thread t1([&o2rating](matrix& firstMostCommonMatrix, const std::string& rule, int index){
+  //    o2rating = getRating(firstMostCommonMatrix, rule, index);
+  //});
+
+  //std::thread t2([&co2rating](matrix& firstLessCommonMatrix, const std::string& rule, int index){
+  //    co2rating = getRating(firstLessCommonMatrix, rule, index);
+  //});
+
+  //t1.join();
+  //t2.join();
   auto o2rating  = getRating(firstMostCommonMatrix, "most", 1);
   auto co2rating = getRating(firstLessCommonMatrix, "less", 1);
 
