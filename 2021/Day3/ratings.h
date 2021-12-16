@@ -16,8 +16,6 @@ std::vector<int> getReading(const matrix&, const std::string&, int);
 
 int getRating(const matrix&, const std::string&, const int&);
 
-std::pair<int ,int> getRatings(matrix&);
-
 matrix readValuesIntoMatrix(std::ifstream&);
 
 int lifeSupportRating(std::ifstream&);
