@@ -43,7 +43,7 @@
 ### Part 1
 
 - The solution to this challenge reads a stream of instructions `instr` from the `input` file, with the format `'action' 'size'` and parses these into the variables `std::string action` and `std::string size` respectively.
-  The input `action is of type `string` and can be `{up, down, forward}` and `size` is of type `int` and is a non-negative integer. These are fed into the appropriate function `actionUp/Down/Forward` according to the content of `action`.
+  The input `action` is of type `string` and can be `{up, down, forward}` and `size` is of type `int` and is a non-negative integer. These are fed into the appropriate function `actionUp/Down/Forward` according to the content of `action`.
   The above function(s) call passes the `coord` pair and `size` as reference, and changes the value of the `first` item of `coord` if the `action` is `up/down` and the second if it´s `forward`.
   When the `input` is finished, the `first` and `second` items of `coord` are multiplied together and returned.
   *Possible improvements*:
