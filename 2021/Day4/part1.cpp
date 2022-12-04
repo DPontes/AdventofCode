@@ -2,6 +2,11 @@
 #include <iostream>
 #include <exception>
 
+auto getScore(std::ifstream& input)
+{
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
   try
